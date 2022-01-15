@@ -25,11 +25,11 @@ fn get_remote_info() (string, string) {
 	if url.contains('@') {
 		// SSH url.
 		parts := url.split(':')[1].split('/')
-		return parts[0], parts[1].trim_suffix('.git')
+		return parts[0], parts[1].trim_string_right('.git')
 	}
 
 	parts := url.split('/')
-	return parts[3], parts[4].trim_suffix('.git')
+	return parts[3], parts[4].trim_string_right('.git')
 }
 
 fn main() {
