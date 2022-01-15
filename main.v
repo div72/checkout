@@ -66,12 +66,13 @@ fn main() {
 		ensure_command('git checkout -b $target --track $submitter/$source_branch')
 		exit(os.system('git pull'))
 	} else {
-		slug := target.split(':')
+		slug := target.split('/')
 		if slug.len != 2 {
 			eprintln('fatal: invalid target')
 			exit(2)
 		}
 		ensure_remote(slug[0], repo)
+		ensure_command('git fetch ${slug[0]}')
 		ensure_command('git checkout -b $target --track ${slug[0]}/${slug[1]}')
 		exit(os.system('git pull'))
 	}
